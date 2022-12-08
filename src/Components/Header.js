@@ -20,6 +20,7 @@ const HeaderStyle = styled.div`
     justify-content: center;
     position: fixed;
     top: 0;
+    z-index:1;
         h1, a{
             font-family: 'Roboto';
             font-weight: 400;
