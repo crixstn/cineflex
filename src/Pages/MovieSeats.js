@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 import Footer from "../Components/Footer";
 import Loading from "../Constants/Loading";
 import Colors from "../Constants/Colors";
+import Form from "../Components/Form";
 
 const { green, gray, yellow, greenBorder, grayBorder, yellowBorder } = Colors;
+const seatsChoise = [];
 
 function ChoiseSeats(props){
     const { status, number, id, ids, setIds } = props;
@@ -14,16 +16,6 @@ function ChoiseSeats(props){
     const [color, setColor] = useState(gray)
     const [border, setBorder] = useState(grayBorder)
     const [selected, setSelected] = useState(false)
-
-    function ChangeColor(){
-        if(color === gray){
-            setColor(green);
-            setBorder(greenBorder);
-        }else if(color === green){
-            setColor(gray);
-            setBorder(grayBorder);
-        }
-    }
 
     if(status === false){
         return(
@@ -35,7 +27,7 @@ function ChoiseSeats(props){
                 <span>{number}</span>
             </Seat>
         )
-    }else if(status === true){
+    }else if(status){
         return(
             <Seat
                 background={color}
@@ -50,6 +42,26 @@ function ChoiseSeats(props){
             </Seat>
         )
     }
+
+
+    function ChangeColor(){
+        if(selected === false){
+            setColor(green);
+            setBorder(greenBorder);
+            seatsChoise.push(number)
+        }else if(selected === true){
+            setColor(gray);
+            setBorder(grayBorder);
+            Remove()
+        }
+    }
+
+    function Remove(){
+		for (let i=0; i<seatsChoise.length; i++){
+			if (seatsChoise[i]===number)
+				seatsChoise.splice(i,1)
+		}
+	}
 
 }
 
@@ -86,6 +98,34 @@ export default function MovieSeats(){
                 </ChoiseSeats>
             ))}
         </Seats>
+
+        <Subtitle>
+                <span>
+                    <Seat background={green} border={greenBorder}></Seat>
+                    <p>Selecionado</p>
+                </span>
+
+                <span>
+                    <Seat background={gray} border={grayBorder}></Seat>
+                    <p>disponivel</p>
+                </span>
+
+                <span>
+                    <Seat background={yellow} border={yellowBorder}></Seat>
+                    <p>Indisponível</p>
+                </span>
+        </Subtitle>
+
+        <Form
+            ids={ids}
+            setIdss={setIds}
+            hour={seat.name}
+            title={seat.movie.title}
+            seatsChoise={seatsChoise}
+            weekday={seat.day.weekday}
+            day={seat.day.date}
+        />
+
         <Footer key={seat.id} img={seat.movie.posterURL} name={seat.movie.title} day={seat.day.weekday} hour={seat.name}/>
     </SeatPage>
     )
@@ -106,15 +146,16 @@ const SeatPage = styled.div`
             color: #293845;
         }
 `
-const Seats = styled.ul`
+const Seats = styled.div`
     display:flex;
     width: 90%;
     align-items: center;
     justify-content: center;
     gap: 20px 10px;
     flex-wrap: wrap;
+    margin-bottom: 25px;
 `
-const Seat = styled.li`
+const Seat = styled.div`
     background: ${ props => props.background};
     border: 1px solid ${ props => props.border};
     border-radius: 12px;
@@ -123,6 +164,7 @@ const Seat = styled.li`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
     span{
         font-family: 'Roboto';
@@ -130,5 +172,30 @@ const Seat = styled.li`
         font-weight: 400;
         font-size: 11px;
         line-height: 13px;
+    }
+`
+const Subtitle = styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    width: 60%;
+
+    span{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        p{
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 15px;
+            display: flex;
+            text-align: center;
+            color: #4E5A65;
+        }
     }
 `

@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import axios from "axios";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 export default function Footer(props){
 

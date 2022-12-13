@@ -14,7 +14,7 @@ export default function MovieSection(){
         const promise = axios.get(URL);
         promise.then(r => setSection(r.data))
         promise.catch(e => alert(e.response.data))
-    }, [])
+    }, [idMovie])
 
     if (section === undefined) {
         return <Loading/> 
