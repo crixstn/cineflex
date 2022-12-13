@@ -19,7 +19,7 @@ function ChoiseSeats(props){
 
     if(status === false){
         return(
-            <Seat
+            <Seat data-test="seat"
                 background={yellow}
                 border={() => yellowBorder}
                 onClick={() => alert("Esse assento não está disponivel :(")}
@@ -29,7 +29,7 @@ function ChoiseSeats(props){
         )
     }else if(status){
         return(
-            <Seat
+            <Seat data-test="seat"
                 background={color}
                 border={() => border}
                 onClick={() => {

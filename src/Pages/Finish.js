@@ -11,20 +11,26 @@ export default function Finish(){
         <FinishPage>
             <h2>Pedido feito <br/> com sucesso!</h2>
             <Infos>
-                <h3>Filme e sessão</h3>
-                <p>{title}</p>
-                <p>{day} - {hour}</p>
+                <div data-test="movie-info">
+                    <h3>Filme e sessão</h3>
+                    <p>{title}</p>
+                    <p>{day} - {hour}</p>
+                </div>
 
-                <h3>Ingressos</h3>
-                {seatsChoise.map((value,index) => (<p key={index}> Assento {value} </p>))}
+                <div data-test="seats-info">
+                    <h3>Ingressos</h3>
+                    {seatsChoise.map((value,index) => (<p key={index}> Assento {value} </p>))}
+                </div>
 
-                <h3>Comprador</h3>
-                <p>Nome: {name}</p>
-                <p>CPF: {cpf}</p>
+                <div data-test="client-info">
+                    <h3>Comprador</h3>
+                    <p>Nome: {name}</p>
+                    <p>CPF: {cpf}</p>
+                </div>
             </Infos>
 
             <Link to="/">
-                <HomeButtom>
+                <HomeButtom data-test="go-home-btn">
                    <p>  Voltar para Home </p>
                 </HomeButtom>
             </Link>
@@ -53,16 +59,19 @@ const Infos = styled.div`
     align-items: start ;
     margin-left: 50px;
 
-    h3 {
-        font-weight: 700;
-        font-size: 24px;
-        margin-bottom: 10px;
+    div{
+        h3 {
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    
+        p {
+            font-weight: 400;
+            font-size: 22px;
+        }
     }
 
-    p {
-        font-weight: 400;
-        font-size: 22px;
-    }
 
 `
 

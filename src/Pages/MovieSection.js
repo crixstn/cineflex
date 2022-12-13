@@ -24,12 +24,12 @@ export default function MovieSection(){
         <SectionPage>
              <h2>Selecione o horário</h2>
              {section?.days.map(s =>(
-             <Days key={s.id}>
+             <Days data-test="movie-day" key={s.id}>
                 <p>{s.weekday} - {s.date}</p>
                 <Options>
                     {s.showtimes.map(st => (
                         <Link to = {`/MovieSeats/${st.id}`}>
-                            <div key = {st.id}>
+                            <div data-test="showtime" key = {st.id}>
                                <p>{st.name}</p>
                             </div>
                         </Link>

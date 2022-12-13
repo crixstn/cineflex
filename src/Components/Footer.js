@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function Footer(props){
 
     return(
-        <FooterStyle>
+        <FooterStyle data-test="footer">
             <Movie>
                 <img src={props.img} alt={props.name} />
             </Movie>

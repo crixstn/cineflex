@@ -23,7 +23,7 @@ export default function SelectMovie(){
             <Movies>
                 {movies?.map(m => (
                     <Link to={`/MovieSection/${m.id}`}>
-                        <Movie key={m.id}>
+                        <Movie data-test="movie" key={m.id}>
                             <img src={m.posterURL} alt={m.title}/>
                             <div>
                                 <h3>{m.overview}</h3>

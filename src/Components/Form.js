@@ -32,7 +32,7 @@ export default function Form(props){
             <form onSubmit={fillForm}>
                 <FormLayout>
                 <label htmlFor='Nome do comprador'> Nome do Comprador: </label>
-                <input type="text" 
+                <input data-test="client-name" type="text" 
                     placeholder='Digite seu nome...'
                     onChange={(e) => setName(e.target.value)}
                     value={name}
@@ -40,14 +40,14 @@ export default function Form(props){
                 />
 
                 <label htmlFor="CPF do comprador"> CPF do comprador: </label>
-                    <input type="number"
+                    <input data-test="client-cpf" type="number"
                     placeholder="Digite seu CPF..."
                     onChange={(e) => setCPF(e.target.value)}
                     value={cpf}
                     required
                 />
 
-                <button type="submit" > Reservar assento(s) </button>
+                <button data-test="book-seat-btn" type="submit" > Reservar assento(s) </button>
                 </FormLayout>
             </form>
     )
