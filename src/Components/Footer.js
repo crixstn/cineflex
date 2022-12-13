@@ -11,7 +11,9 @@ export default function Footer(props){
                 <img src={props.img} alt={props.name} />
             </Movie>
             <Texts>
-                <h3>{props.name}</h3>
+                <h3>{props.name} <br />
+                {props.day && props.hour !== undefined ? `${props.day} - ${props.hour}` : ""}
+                </h3>
             </Texts>
         </FooterStyle>
     )

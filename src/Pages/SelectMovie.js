@@ -2,7 +2,7 @@ import styled from "styled-components"
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import LoadingGif from "../Assets/loading.gif"
+import Loading from "../Constants/Loading";
 
 export default function SelectMovie(){
     const [movies, setMovies] = useState(undefined);
@@ -14,10 +14,7 @@ export default function SelectMovie(){
       }, [])
 
     if (movies === undefined) {
-        return (<Loading> 
-                    <img src={LoadingGif} alt="Loading Gif"/> 
-                </Loading>
-            )
+        return <Loading/> 
       }
 
     return(
@@ -105,14 +102,4 @@ const Movie = styled.li`
           opacity: 1;
         }
       } 
-`
-const Loading = styled.div`
-      width: 100%;
-      margin-top:15%;
-      display: flex;
-      align-itens: center;
-      justify-content: center;
-      img{
-        height: 100px;
-      }
 `

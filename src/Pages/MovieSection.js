@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import LoadingGif from "../Assets/loading.gif"
+import Loading from "../Constants/Loading";
 import Footer from "../Components/Footer";
 
 export default function MovieSection(){
@@ -17,10 +17,7 @@ export default function MovieSection(){
     }, [])
 
     if (section === undefined) {
-        return (<Loading> 
-                    <img src={LoadingGif} alt="Loading Gif"/> 
-                </Loading>
-            )
+        return <Loading/> 
       }
 
     return(
@@ -31,9 +28,11 @@ export default function MovieSection(){
                 <p>{s.weekday} - {s.date}</p>
                 <Options>
                     {s.showtimes.map(st => (
+                        <Link to = {`/MovieSeats/${st.id}`}>
                             <div key = {st.id}>
                                <p>{st.name}</p>
                             </div>
+                        </Link>
                     ))}
                 </Options>
              </Days>))}
@@ -82,7 +81,7 @@ const Options = styled.div`
         display: flex;
         gap: 10px;
 
-        div{
+        div, a{
             width: 83px;
             height: 43px;
             background: #E8833A;
@@ -92,6 +91,7 @@ const Options = styled.div`
             justify-content: center;
             margin: 20px 0;
             cursor:pointer;
+            text-decoration: none;
 
            p{
             font-family: 'Roboto';
@@ -103,15 +103,4 @@ const Options = styled.div`
             text-align: center;
            }
         }
-`
-
-const Loading = styled.div`
-      width: 100%;
-      margin-top:15%;
-      display: flex;
-      align-itens: center;
-      justify-content: center;
-      img{
-        height: 100px;
-      }
 `
